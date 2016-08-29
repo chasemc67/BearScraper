@@ -96,6 +96,7 @@ def main():
 		navigateToFallSemester(driver)
 		if bothClassesAreFull(driver):
 			errorCount = 0
+			print("Both classes are full")
 			scrollPage(driver)
 			refreshPage(driver)
 		elif bothClassesAreOpen(driver):
