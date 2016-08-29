@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
 import getpass
+import os
 
 #Globals
 closedClassIcon = "https://www.beartracks.ualberta.ca/cs/uahebprd/cache/PS_CS_COURSE_ENROLLED_ICN_1.gif"
@@ -17,8 +18,10 @@ def enrollClass():
 	driver.find_element_by_xpath("//a[@id='DERIVED_REGFRM1_SSR_PB_SUBMIT']").click()
 
 def takeScreenshot(driver, path):
+	if not os.path.exists(path):
+		os.makedirs(path)
 	print("taking screenshot")
-	driver.get_screenshot_as_file(path+str(round(time.time()))) 
+	driver.get_screenshot_as_file(path+"/"+str(round(time.time()))) 
 
 def refreshPage(driver):
 	driver.refresh()
@@ -65,6 +68,7 @@ def main():
 
 		if icon1.get_attribute("src") == closedClassIcon and icon2.get_attribute("src") == closedClassIcon:
 			scrollPage(driver)
+			takeScreenshot(driver, "Images/")
 			time.sleep(30) # seconds
 			refreshPage(driver)
 		elif icon1.get_attribute("src") == openClassIcon and icon2.get_attribute("src") == openClassIcon:
@@ -74,7 +78,7 @@ def main():
 		else:
 			print("Something went wrong")
 			scrollPage(driver)
-			takeScreenshot(driver, "Images/")
+			takeScreenshot(driver, "Images")
 			refreshPage(driver)
 
 
