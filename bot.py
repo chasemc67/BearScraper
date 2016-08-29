@@ -92,7 +92,6 @@ def main():
 	navigateToScheduleBuilder(driver)
 
 	errorCount = 0
-
 	while(1 == 1):
 		navigateToFallSemester(driver)
 		if bothClassesAreFull(driver):
@@ -100,8 +99,7 @@ def main():
 			scrollPage(driver)
 			refreshPage(driver)
 		elif bothClassesAreOpen(driver):
-			errorCount = 0
-			print("Enrolling in class")
+			print("Congratz bro")
 			enrollClass(driver)
 			break
 		else:
@@ -109,7 +107,7 @@ def main():
 			print("Something went wrong")
 			scrollPage(driver)
 			takeScreenshot(driver, "Images")
-			if errorCount > 5:
+			if errorCount > 3:
 				break
 			refreshPage(driver)
 	#cleanup		
