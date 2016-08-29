@@ -20,6 +20,10 @@ def takeScreenshot(driver, path):
 def refreshPage(driver):
 	driver.refresh()
 
+def scrollPage(driver):
+	driver.maximize_window()
+	driver.execute_script("window.scrollTo(0, 700);")
+
 #get username and password
 usernameCred = input("username: ")
 passwordCred = input("password: ")
@@ -56,6 +60,7 @@ while(1 == 1):
 	icon2 = driver.find_element_by_xpath("//div[@id='win0divDERIVED_REGFRM1_SSR_STATUS_LONG$1']/div/img[@class='SSSIMAGECENTER']")
 
 	if icon1.get_attribute("src") == closedClassIcon and icon2.get_attribute("src") == closedClassIcon:
+		scrollPage(driver)
 		time.sleep(30) # seconds
 		refreshPage(driver)
 	elif icon1.get_attribute("src") == openClassIcon and icon2.get_attribute("src") == openClassIcon:
@@ -64,8 +69,7 @@ while(1 == 1):
 		break
 	else:
 		print("Something went wrong")
-		driver.maximize_window()
-		driver.execute_script("window.scrollTo(0, 700);")
+		scrollPage(driver)
 		takeScreenshot(driver, "Images/")
 		refreshPage(driver)
 
