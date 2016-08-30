@@ -18,7 +18,7 @@ def takeScreenshot(driver, path):
 	driver.get_screenshot_as_file(path+"/"+str(round(time.time())) + ".png") 
 
 def getRandomRefreshTime():
-	return random.randint(15, 45)
+	return random.randint(600, 1200)
 
 def refreshPage(driver):
 	time.sleep(getRandomRefreshTime()) # seconds
@@ -92,6 +92,7 @@ def main():
 	navigateToScheduleBuilder(driver)
 
 	errorCount = 0
+	loopCount = 0
 	while(1 == 1):
 		navigateToFallSemester(driver)
 		if bothClassesAreFull(driver):
