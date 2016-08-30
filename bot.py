@@ -3,6 +3,7 @@ import getpass
 import random
 import time
 from time import strftime
+from time import localtime
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -27,6 +28,12 @@ def getTime():
 	os.environ['TZ'] = 'US/Mountain'
 	time.tzset()
 	return strftime("%a, %d %b %Y %Z %X")
+
+def getTimeWithOffsetInSeconds(offsetInSeconds):
+	os.environ['TZ'] = 'US/Mountain'
+	time.tzset()
+	newTime = time.time() + offsetInSeconds
+	return strftime("%a, %d %b %Y %Z %X", localtime(newTime))	
 
 #wait in seconds before refreshing the page
 def refreshPageAfterWait(wait, driver):
@@ -157,9 +164,10 @@ def executeBottingSession(refreshSeconds, refreshIntervalSize, refreshesPerSessi
 		navigateToFallSemester(driver)
 		if bothClassesAreFull(driver):
 			errorCount = 0
-			print("[ . ] Both classes are full, " + str(i) + " refreshes so far. taken at " + str(getTime()))
+			newWaitTime = getRandomTimeFromRange(refreshIntervalStart, refreshIntervalEnd)
+			print("[ . ] Both classes are full, " + str(i) + " refreshes so far. Next refresh at " + str(getTimeWithOffsetInSeconds(newWaitTime)))
 			scrollPage(driver)
-			refreshPageAfterWait(getRandomTimeFromRange(refreshIntervalStart, refreshIntervalEnd), driver)
+			refreshPageAfterWait(newWaitTime, driver)
 		elif bothClassesAreOpen(driver):
 			print("[ + ] Congratz bro, you did it")
 			enrollClass(driver)
@@ -207,7 +215,7 @@ def main():
 		print("")
 		print("")
 		print("")
-		time.sleep(2700, 4500)
+		time.sleep(getRandomTimeFromRange(2700, 4500))
 	
 	print("")
 	print("")
