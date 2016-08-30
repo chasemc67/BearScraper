@@ -137,7 +137,7 @@ def enrollClass(driver):
 #refreshIntervalSize is the size of the interval. Some number less than refreshSeconds
 #refreshesPerSession is the number of sessions before the function returns control.
 def executeBottingSession(refreshSeconds, refreshIntervalSize, refreshesPerSession, username, password):
-	print("[ *** ] Executing botting session.")
+	print("[ *** ] Executing botting session at " + str(getTime()))
 	print("[ ** ] Refresh count: " + str(refreshesPerSession))
 	print("[ ** ] Rate of refresh: " + str(refreshSeconds/60) + " +/- " + str(refreshIntervalSize/60) + " minutes" )
 	print("[ * ]")
@@ -157,7 +157,7 @@ def executeBottingSession(refreshSeconds, refreshIntervalSize, refreshesPerSessi
 		navigateToFallSemester(driver)
 		if bothClassesAreFull(driver):
 			errorCount = 0
-			print("[ . ] Both classes are full, " + str(i) + " refreshes so far. talen at " + str(getTime()))
+			print("[ . ] Both classes are full, " + str(i) + " refreshes so far. taken at " + str(getTime()))
 			scrollPage(driver)
 			refreshPageAfterWait(getRandomTimeFromRange(refreshIntervalStart, refreshIntervalEnd), driver)
 		elif bothClassesAreOpen(driver):
@@ -178,11 +178,41 @@ def executeBottingSession(refreshSeconds, refreshIntervalSize, refreshesPerSessi
 		
 
 def main():
+	print("")
+	print("")
+	print("")
+	print("oooooooooo.                                .oooooo..o                                                            ")
+	print("`888'   `Y8b                              d8P'    `Y8                                                            ")
+	print(" 888     888  .ooooo.   .oooo.   oooo d8b Y88bo.       .ooooo.  oooo d8b  .oooo.   oo.ooooo.   .ooooo.  oooo d8b ")
+	print(" 888oooo888' d88' `88b `P  )88b  `888\"\"8P  `\"Y8888o.  d88' `\"Y8 `888\"\"8P `P  )88b   888' `88b d88' `88b `888\"\"8P ")
+	print(" 888    `88b 888ooo888  .oP\"888   888          `\"Y88b 888        888      .oP\"888   888   888 888ooo888  888     ")
+	print(" 888    .88P 888    .o d8(  888   888     oo     .d8P 888   .o8  888     d8(  888   888   888 888    .o  888     ")
+	print("o888bood8P'  `Y8bod8P' `Y888\"\"8o d888b    8\"\"88888P'  `Y8bod8P' d888b    `Y888\"\"8o  888bod8P' `Y8bod8P' d888b    ")
+	print("                                                                                    888                          ")
+	print("                                                                                   o888o                         ")
+	print("")
+	print("")
+	print("--==      Beginning Campaign      ==--")
+	print("")
+	print("")
 
 	#get username and password
 	username = input("username: ")
 	password = getpass.getpass('Password:')
 
-	executeBottingSession(900, 300, 2, username, password)
+	for i in range(4):
+		executeBottingSession(900, 300, 4, username, password)
+		print("")
+		print("[ ** ] Ending session at " + str(getTime()))
+		print("")
+		print("")
+		print("")
+		time.sleep(2700, 4500)
+	
+	print("")
+	print("")
+	print("[ * ]")
+	print("[ ** ]")
+	print("[ **** ] Ending Campaing at " + str(getTime()))
 
 main()
