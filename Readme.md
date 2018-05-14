@@ -29,4 +29,4 @@ Modify enrollClass() to click appropriate boxes
 
 
 
-It is important to note, that botting was NOT prohibited on the beartracks site when this was written. However, it does now appear to be prohibited. Use at your own risk. 
+It is important to note, that botting was NOT prohibited on the beartracks site when this was written. However, it does now appear to be prohibited. Use at your own risk.  
